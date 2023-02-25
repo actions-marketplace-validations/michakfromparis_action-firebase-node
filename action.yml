@@ -1,6 +1,6 @@
-name: Setup Firebase
-description: Setup the firebase-tools in this workflow step
-author: Jeremy Shore
+name: Action Firebase Node
+description: Setup the firebase-tools and run any command
+author: Michel Courtine
 inputs:
   tools-version:
     description: Version of firebase-tools to install
