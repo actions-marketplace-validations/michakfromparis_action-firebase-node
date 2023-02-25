@@ -6,6 +6,7 @@ import {
   startGroup,
   endGroup,
 } from "@actions/core";
+import * as path from 'path'
 
 export const login = async () => {
   startGroup("Firebase Authentication");
@@ -30,10 +31,9 @@ export const login = async () => {
       const buffer = Buffer.from(key, "base64");
       key = buffer.toString("ascii");
     }
-
-    info("Storing service account key into /opt/gcp_key.json");
-    writeFileSync("/opt/gcp_key.json", key);
-    await exportVariable("GOOGLE_APPLICATION_CREDENTIALS", "/opt/gcp_key.json");
+    let keyFilename = path.join(process.env['RUNNER_TEMP'] as string, "gcp_key.json");
+    writeFileSync(keyFilename, key);
+    await exportVariable("GOOGLE_APPLICATION_CREDENTIALS", keyFilename);
   }
 
   endGroup();
