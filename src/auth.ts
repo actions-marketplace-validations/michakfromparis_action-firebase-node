@@ -31,7 +31,7 @@ export const login = async () => {
       const buffer = Buffer.from(key, "base64");
       key = buffer.toString("ascii");
     }
-    let keyFilename = path.join(process.env['RUNNER_TEMP'] as string, "gcp_key.json");
+    let keyFilename = "/tmp/gcp_key.json";
     writeFileSync(keyFilename, key);
     await exportVariable("GOOGLE_APPLICATION_CREDENTIALS", keyFilename);
   }
