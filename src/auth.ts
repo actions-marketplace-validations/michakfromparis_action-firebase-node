@@ -13,6 +13,9 @@ export const login = async () => {
   let key = getInput("gcp_sa_key");
   const token = getInput("firebase_token");
 
+  console.debug("key: ", key)
+  console.debug("token: ", token)
+
   if (!key && !token) {
     throw new Error(
       "Either firebase_token or gcp_sa_key are required to authenticate firebase-tools"
