@@ -13,6 +13,11 @@ export const install = async () => {
   const version = getInput("tools-version");
   let command = "npm install -g firebase-tools";
 
+  if (sync("firebase")) {
+    debug("Found firebase in path, skipping installation");
+    endGroup();
+  }
+
   if (!sync("npm")) {
     throw new Error(
       "npm is required to run this command, did you use actions/setup-node?"
