@@ -32,7 +32,7 @@ export const login = async () => {
       key = buffer.toString("ascii");
     }
     let keyFilename = "/tmp/gcp_key.json";
-    info("Storing service account key into /opt/gcp_key.json");
+    info("Storing service account key into /tmp/gcp_key.json");
     writeFileSync(keyFilename, key);
     await exportVariable("GOOGLE_APPLICATION_CREDENTIALS", keyFilename);
   }
